@@ -24,10 +24,10 @@ Examples:
 */
 
 function onlyEvenValues(arr){
-    let newArray=[];
-    const evenValue = arr.filter(value => value%2===0);
-    newArray.push(evenValue);
-    return newArray;
+    const evenValue = arr.filter(function(num){
+        return num%2===0;   
+    });
+    return evenValue;
 }
 
 /*
@@ -210,16 +210,15 @@ Examples:
 */
 
 function findInObj(arr, key, searchValue) {
-    let k=key;
-    let v=searchValue;
-    let result;  
-    arr.filter(function(obj){    
-        if(obj[k]===v){ 
-            result=obj;  
+    let result= arr.filter(function(obj){    
+        if(obj[key]===searchValue){ 
+            return true; 
         }
-        return result;
+        else{
+            return false;
+        }
     })
-    return result;
+    return result[0];
 }
 
 /*
@@ -231,7 +230,25 @@ Examples:
     removeVowels('ZZZZZZ') // ('zzzzzz')
 */
 
-function removeVowels(str) {}
+function removeVowels(str) {
+    let lowerStrArr= str.toLowerCase();
+    let strArr=lowerStrArr.split("");
+    let vStr="aeiou";
+    result=strArr.filter(function(char){
+        if(vStr.indexOf(char)===-1){
+            return true;
+        }
+        else{
+            return false;
+        }
+    })
+    let s="";
+    for(let char of result){
+        s=s+char
+    }
+
+    return s;  
+}
 
 /*
 Write a function called doubleOddNumbers which accepts an array and returns a new array with all of the odd numbers doubled (HINT - you can use map and filter to double and then filter the odd numbers).
@@ -241,4 +258,13 @@ Examples:
     doubleOddNumbers([4,4,4,4,4]) // []
 */
 
-function doubleOddNumbers(arr) {}
+function doubleOddNumbers(arr) {
+    let result=[];
+    oddNum=arr.filter(function(num){
+        return num%2!==0;
+    })
+    oddNum.map(function(num){
+        result.push(num*2);
+    })
+    return result;
+}
